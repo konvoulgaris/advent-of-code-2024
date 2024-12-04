@@ -56,9 +56,9 @@ func main() {
 
 	start := time.Now()
 
-	for i := 0; i < 1000; i++ {
+	for i := 0; i < 10000; i++ {
 		countWord(grid)
 	}
 
-	println(time.Since(start), "ns")
+	println(time.Since(start)/time.Duration(10000), "ns")
 }
