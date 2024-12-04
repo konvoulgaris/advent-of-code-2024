@@ -46,3 +46,27 @@ func GetInputFileLines(path string) []string {
 
 	return lines
 }
+
+func GetInputFileContentAs2DArray(path string) [][]rune {
+	file, err := os.Open(path)
+
+	if err != nil {
+		panic(err)
+	}
+
+	defer file.Close()
+
+	var grid [][]rune
+	scanner := bufio.NewScanner(file)
+
+	for scanner.Scan() {
+		line := scanner.Text()
+		grid = append(grid, []rune(line))
+	}
+
+	if err := scanner.Err(); err != nil {
+		panic(err)
+	}
+
+	return grid
+}
