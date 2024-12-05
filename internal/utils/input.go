@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"io"
 	"os"
+	"strconv"
+	"strings"
 )
 
 func GetInputFileContent(path string) string {
@@ -69,4 +71,26 @@ func GetInputFileContentAs2DArray(path string) [][]rune {
 	}
 
 	return grid
+}
+
+func GetInputValueCommaListAsIntArray(lines []string) [][]int {
+	var input [][]int
+
+	for _, update := range lines {
+		split := strings.Split(update, ",")
+		var intList []int
+
+		for _, str := range split {
+			num, err := strconv.Atoi(strings.TrimSpace(str))
+
+			if err != nil {
+				panic(err)
+			}
+
+			intList = append(intList, num)
+		}
+		input = append(input, intList)
+	}
+
+	return input
 }
