@@ -10,6 +10,22 @@ import (
 
 type StoneCounter map[string]int
 
+func removeLeadingZeros(s string) string {
+	if s == "0" {
+		return s
+	}
+
+	for len(s) > 0 && s[0] == '0' {
+		s = s[1:]
+	}
+
+	if s == "" {
+		return "0"
+	}
+
+	return s
+}
+
 func transformStones(stoneCounts StoneCounter) StoneCounter {
 	newStoneCounts := make(StoneCounter)
 
@@ -35,22 +51,6 @@ func transformStones(stoneCounts StoneCounter) StoneCounter {
 	}
 
 	return newStoneCounts
-}
-
-func removeLeadingZeros(s string) string {
-	if s == "0" {
-		return s
-	}
-
-	for len(s) > 0 && s[0] == '0' {
-		s = s[1:]
-	}
-
-	if s == "" {
-		return "0"
-	}
-
-	return s
 }
 
 func solve(times int, stoneCounts StoneCounter) int {
